@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo1" translatesAutoresizingMaskIntoConstraints="NO" id="bjp-ZB-lTM">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="HnI-v7-dHs"/>
+                                    <constraint firstAttribute="width" constant="214" id="PiW-00-DAp"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="HnI-v7-dHs"/>
+                                        <exclude reference="PiW-00-DAp"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="HnI-v7-dHs"/>
+                                        <include reference="PiW-00-DAp"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.30980392156862746" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bjp-ZB-lTM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="04P-Vu-Z2T"/>
+                            <constraint firstItem="bjp-ZB-lTM" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="LdX-gC-6SY"/>
+                            <constraint firstItem="bjp-ZB-lTM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dua-qG-m4q"/>
+                            <constraint firstItem="bjp-ZB-lTM" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yLL-0I-VSX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="04P-Vu-Z2T"/>
+                                <exclude reference="LdX-gC-6SY"/>
+                                <exclude reference="dua-qG-m4q"/>
+                                <exclude reference="yLL-0I-VSX"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="dua-qG-m4q"/>
+                                <include reference="yLL-0I-VSX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="04P-Vu-Z2T"/>
+                                <include reference="LdX-gC-6SY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo1" width="353" height="104"/>
+    </resources>
+</document>

@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings
+  RappiTest
+
+  Created by Jhon Villalobos on 9/24/16.
+  Copyright © 2016 Jhon Villalobos. All rights reserved.
+*/
+
+
+app_name = "Rappi Test";
+
+/* Error message when the splash screen is loading */
+error_initcoder = "init(coder:) has not been implemented";
+
+/* String: Applications */
+applications = "Applications";
+
+
+/* String: About */
+about = "About";
+
+/* String: Contact */
+contact = "Contact";
+
+/* The message when no result found for a table */
+noResultsFound = "No records found";
+
+/* App's Share message */
+shareAppMessage = "Hey, check %@. You can download it from: %@";
+
+/* ABOUT TITLE */
+aboutTitle = "About Rappi Test";
+
+/* About the project text */
+aboutProject = "About this Project";
+
+/* About Project Content */
+aboutProjectContent = "RappiTest App born as one of the interview requirements for iOS position in Rappi.com. The main idea bout this project is check the technical abilities programming on Apple devices.";
+
+/* About Me Title */
+aboutMe = "About Me";
+
+/* About Me Content */
+aboutMeContent = "My name is Jhon Villalobos and trying to be part of Rappi.com family as iOS Developer. My first time developing was at the age of 7 when I learned to code in Basic in a summer class. After that I just changed the games in Windows 95 and 98. I work with HTML since 1998, PHP since 2004 adn Java since 2009. Since 2015 I'm working as Freelancer developing iOS Apps in Swift.";
+
+/* Making Of Title */
+makingOf = "Making of...";
+
+/* Making Of Title */
+makingOf = "Cómo se desarrolló...";
+
+/* Email Label */
+email = "villajohn@yahoo.com";
+
+/* Subject Email */
+subjectEmail = "Contact from Rappi Test iOS App";
+
+/* LinkedIn Label */
+linkedIn = "https://ve.linkedin.com/in/jhon-villalobos-urdaneta-10475514";
+linkedInText = "LinkedIn";
+
+/* Instagram Label */
+instagramLabel = "https://www.instagram.com/villajhon/";
+instagramText  = "Instagram";
+
+/* Can't save a file */
+fileNotSaved = "Couldn't write file";
+
+/* Close */
+close = "Close";
+
+/* sí */
+yes = "Yes";
+
+/* No */
+no = "No";
+
+/* Aviso al usuario sobre la falta de red */
+noNetwork = "Can't connect to the server right now, do you want to get the last data saved in your device ?";
+
+/* Pull refresh message */
+pullMessage = "Pull to refresh the table";
+

@@ -1,0 +1,78 @@
+/* 
+  Localizable.strings
+  RappiTest
+
+  Created by Jhon Villalobos on 9/24/16.
+  Copyright © 2016 Jhon Villalobos. All rights reserved.
+*/
+
+app_name = "Rappi Test";
+
+/*Mensaje de error en la carga de la animación de splash (inits)*/
+error_initcoder = "init(coder:) no ha sido implementado";
+
+/* Cadena Aplicaciones */
+applications = "Aplicaciones";
+
+/* Cadena Acerca de */
+about = "Acerca";
+
+/* Cadena Contacto */
+contact = "Contacto";
+
+/* Mensaje cuando no hay resultados para poblar una tabla */
+noResultsFound = "No hay resultados disponibles";
+
+/* Mensaje para compoartir aplicación  */
+shareAppMessage = "Te invito a descargar %@. Puedes utilizar la siguiente URL: %@";
+
+/* ABOUT TITLE */
+aboutTitle = "Acerca de Rappi Test";
+
+/* About the project text */
+aboutProject = "Acerca del Proyecto";
+
+/* About Project Content */
+aboutProjectContent = "RappiTest nace a partir de uno de los requirimientos de la entrevista laboral para cubrir el cargo de Desarrollador en iOS para la empresa Rappi. La base del proyecto consiste en medir las habilidades técnicas del aspirante quien debe culminar la prueba en un plazo no mayor a 48 horas a patir de la fecha de recepción del documento con los detalles de la prueba. La prioridad de la prueba se basa en medir los conocimientos en desarrollo de aplicaciones móviles.";
+
+/* About Me Title */
+aboutMe = "Acerca de Mi";
+
+/* About Me Content */
+aboutMeContent = "Me llamo Jhon Villalobos, aspiro al cargo de Desarrollar en iOS para Rappi.com. Mi primer contacto con desarrollo de aplicaciones fue a la edad de 7 años cuando aprendí a trabajar con Basic en un curso vacacional. Posterior a eso me dedicaba a modificar las apicaciones de Juegos que windows incluía en sus version 95 y 98, las cuales estaban desarrolladas en Basic. Desde 1998 trabajo con HTML y desde 2004 con PHP. En 2009 comencé a trabajar en Java desarrollando distintas aplicaciones móviles y de escritorio. En 2015 me formé en como desarrollador de iOS (Swift), desde entonces sólo me dedico al desarrollo de aplicaciones móviles en Swift. ";
+
+
+/* Making Of Title */
+makingOf = "Cómo se desarrolló...";
+
+/* Email Label */
+email = "villajohn@yahoo.com";
+
+/* Subject Email */
+subjectEmail = "Contacto desde la App iOS de Rappi Test";
+
+/* LinkedIn Label */
+linkedIn = "https://ve.linkedin.com/in/jhon-villalobos-urdaneta-10475514";
+linkedInText = "LinkedIn";
+
+/* Instagram Label */
+instagramLabel = "https://www.instagram.com/villajhon/";
+instagramText  = "Instagram";
+
+/* Can't save a file */
+fileNotSaved = "No esposible guardar el documento JSON";
+
+/* Close */
+close = "Cerrar";
+
+/* sí */
+yes = "Sí";
+
+/* No */
+no = "No";
+
+/* Aviso al usuario sobre la falta de red */
+noNetwork = "La conexión con el servidor ha fallado, desea cargar la última lista que que obtuvo del servidor ?";
+
+/* Pull refresh message */
+pullMessage = "Desliza hacia abajo para actualizar";
