@@ -76,3 +76,6 @@ noNetwork = "La conexión con el servidor ha fallado, desea cargar la última li
 
 /* Pull refresh message */
 pullMessage = "Desliza hacia abajo para actualizar";
+
+/* Cargando */
+loading = "cargando...";

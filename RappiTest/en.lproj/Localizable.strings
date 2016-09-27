@@ -81,3 +81,6 @@ noNetwork = "Can't connect to the server right now, do you want to get the last 
 /* Pull refresh message */
 pullMessage = "Pull to refresh the table";
 
+/* Cargando */
+loading = "loading...";
+

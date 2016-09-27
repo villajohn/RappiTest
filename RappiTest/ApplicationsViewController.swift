@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSpinner
 import KeychainAccess
 
 class ApplicationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -29,7 +30,7 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SwiftSpinner.show("")
         loadRefreshControl()
         setupView()
     }
@@ -67,7 +68,7 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
             collectionView.dataSource = self
             collectionView.reloadData()
         }
-        
+        SwiftSpinner.hide()
         refreshControl.endRefreshing()
     }
     

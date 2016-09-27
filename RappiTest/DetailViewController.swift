@@ -26,11 +26,39 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var sharBtn: UIButton!
     
+    @IBOutlet weak var sAppPicture: UIImageView!
+    @IBOutlet weak var sAppName: UILabel!
+    @IBOutlet weak var sAppOwner: UILabel!
+    @IBOutlet weak var sAppCategory: UILabel!
+    @IBOutlet weak var sAppRights: UILabel!
+    @IBOutlet weak var sAppRelease: UILabel!
+    @IBOutlet weak var sAppPrice: UILabel!
+    @IBOutlet weak var sSummaryText: UITextView!
+    @IBOutlet weak var sDetailContainer: UIView!
+    
     
     var rootViewController: ApplicationsViewController!
     
     override func viewWillAppear(_ animated: Bool) {
         appPrice.textColor = UIColor.white
+        
+        if UI_USER_INTERFACE_IDIOM() == .pad {
+            loadViewpad()
+            loadDetailsPad()
+        } else {
+            loadViewPhone()
+            loadDetailsPhone()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        
+    }
+    
+    func loadViewpad() {
+        detailContainer.layer.cornerRadius = 10.0
         
         appPrice.layer.borderWidth   = 1
         appPrice.layer.masksToBounds = false
@@ -42,10 +70,17 @@ class DetailViewController: UIViewController {
         roundedPictureWithout(sender: appPicture, color: UIColor.white)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-        loadDetails()
+    func loadViewPhone() {
+        sDetailContainer.layer.cornerRadius = 10.0
+        
+        roundedPictureWithout(sender: sAppPicture, color: UIColor.white)
+        
+        sAppPrice.layer.borderWidth   = 1
+        sAppPrice.layer.masksToBounds = false
+        sAppPrice.layer.borderColor   = UIColor.rappiGreenColor().cgColor
+        sAppPrice.layer.cornerRadius  = (sAppPrice.frame.height)/2
+        sAppPrice.clipsToBounds       = true
+        sAppPrice.backgroundColor     = UIColor.rappiGreenColor()
     }
     
     func setupView() {
@@ -54,8 +89,6 @@ class DetailViewController: UIViewController {
         //mostrar logo como título en el navigation controller
         let image = UIImage(named: "logo1-small.png")
         self.navigationItem.titleView = UIImageView(image: image)
-        
-        detailContainer.layer.cornerRadius = 10.0
 
         closeBtn.setImage(UIImage(named: "close-button-pressed"), for: .highlighted)
         sharBtn.setImage(UIImage(named: "share-button-pressed"), for: .highlighted)
@@ -64,8 +97,26 @@ class DetailViewController: UIViewController {
         topLandscapeContainer.layer.cornerRadius = 5.0
     }
 
+    func loadDetailsPhone() {
+        let url = NSURL(string: appDetail.icon?[2]["label"] as! String)
+        let networkService = NetworkServices(url: url!)
+        networkService.downloadImage { (imageData) in
+            let image = UIImage(data: imageData as Data)
+            DispatchQueue.main.async(execute: {
+                self.sAppPicture.image = image
+            })
+        }
+        
+        sAppName.text        = appDetail.name
+        sAppOwner.text       = appDetail.owner?["label"] as? String
+        sAppCategory.text    = appDetail.category?["label"] as? String
+        sAppRights.text      = appDetail.rights
+        sAppRelease.text     = appDetail.realeaseDate
+        sSummaryText.text    = appDetail.summary
+        sAppPrice.text       = (Double(appDetail.price?["amount"] as! String) == 0 ? "Free" : "\(appDetail.price?["amount"]) \(appDetail.price?["currency"])")
+    }
     
-    func loadDetails() {
+    func loadDetailsPad() {
         let url = NSURL(string: appDetail.icon?[2]["label"] as! String)
         let networkService = NetworkServices(url: url!)
         networkService.downloadImage { (imageData) in

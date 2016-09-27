@@ -1,12 +1,15 @@
 PODS:
   - KeychainAccess (3.0.0)
+  - SwiftSpinner (0.9.5)
 
 DEPENDENCIES:
   - KeychainAccess
+  - SwiftSpinner
 
 SPEC CHECKSUMS:
   KeychainAccess: 412bf2650d9aebfc8135a58103b90ec38caad7f8
+  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
 
-PODFILE CHECKSUM: 2b34a6c45626cb487ea6441682e3ac0774026fc6
+PODFILE CHECKSUM: 832ac026fda711d290d083730ff1ed2bb3b650fc
 
 COCOAPODS: 1.0.1

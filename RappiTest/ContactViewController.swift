@@ -18,6 +18,10 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var linkedInLabel: UILabel!
     @IBOutlet weak var landscapePicture: UIImageView!
     
+    @IBOutlet weak var sEmailLabel: UILabel!
+    @IBOutlet weak var sInstagramLabel: UILabel!
+    @IBOutlet weak var sLinkedInLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +34,10 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
         linkedInLabel.text = NSLocalizedString("linkedInText", comment: "")
         emailLabel.text = NSLocalizedString("email", comment: "")
         
+        sInstagramLabel.text = NSLocalizedString("instagramText", comment: "")
+        sLinkedInLabel.text = NSLocalizedString("linkedInText", comment: "")
+        sEmailLabel.text = NSLocalizedString("email", comment: "")
+        
         view.backgroundColor = UIColor.rappidGrayColor()
         containerViewContact.backgroundColor = UIColor.white
         containerViewContact.layer.cornerRadius = 10.0
@@ -39,25 +47,46 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
         emailLabel.isUserInteractionEnabled = true
         emailLabel.addGestureRecognizer(gestureEmail)
         
+        sEmailLabel.isUserInteractionEnabled = true
+        sEmailLabel.addGestureRecognizer(gestureEmail)
+        
         let gestureInstagram = UITapGestureRecognizer(target: self, action: #selector(self.openInstagram))
         instagramLabel.isUserInteractionEnabled = true
         instagramLabel.addGestureRecognizer(gestureInstagram)
+        
+        sInstagramLabel.isUserInteractionEnabled = true
+        sInstagramLabel.addGestureRecognizer(gestureInstagram)
      
         let gestureLinkedIn = UITapGestureRecognizer(target: self, action: #selector(self.openLinkedIn))
         linkedInLabel.isUserInteractionEnabled = true
         linkedInLabel.addGestureRecognizer(gestureLinkedIn)
         
+        sLinkedInLabel.isUserInteractionEnabled = true
+        sLinkedInLabel.addGestureRecognizer(gestureLinkedIn)
+        
         emailLabel.layer.borderColor = UIColor.rappidGrayColor().cgColor
         emailLabel.layer.borderWidth = 2.0
         emailLabel.layer.cornerRadius = 10.0
+        
+        sEmailLabel.layer.borderColor = UIColor.rappidGrayColor().cgColor
+        sEmailLabel.layer.borderWidth = 2.0
+        sEmailLabel.layer.cornerRadius = 10.0
         
         instagramLabel.layer.borderColor = UIColor.rappidGrayColor().cgColor
         instagramLabel.layer.borderWidth = 2.0
         instagramLabel.layer.cornerRadius = 10.0
         
+        sInstagramLabel.layer.borderColor = UIColor.rappidGrayColor().cgColor
+        sInstagramLabel.layer.borderWidth = 2.0
+        sInstagramLabel.layer.cornerRadius = 10.0
+        
         linkedInLabel.layer.borderColor = UIColor.rappidGrayColor().cgColor
         linkedInLabel.layer.borderWidth = 2.0
         linkedInLabel.layer.cornerRadius = 10.0
+        
+        sLinkedInLabel.layer.borderColor = UIColor.rappidGrayColor().cgColor
+        sLinkedInLabel.layer.borderWidth = 2.0
+        sLinkedInLabel.layer.cornerRadius = 10.0
     }
     
     func sendEmail() {
