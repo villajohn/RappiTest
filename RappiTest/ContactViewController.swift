@@ -16,6 +16,7 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var instagramLabel: UILabel!
     @IBOutlet weak var linkedInLabel: UILabel!
+    @IBOutlet weak var landscapePicture: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -29,7 +29,8 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        loadRefreshControl()
         setupView()
     }
     
@@ -66,6 +67,8 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
             collectionView.dataSource = self
             collectionView.reloadData()
         }
+        
+        refreshControl.endRefreshing()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -227,6 +230,7 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadTable() {
+        
         DispatchQueue.main.async(execute: {
             if connectedToNetwork() {
                 self.appList = Application.downloadApplications()

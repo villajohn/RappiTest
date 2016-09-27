@@ -7,5 +7,6 @@ target 'RappiTest' do
 
   # Pods for RappiTest
   pod 'KeychainAccess'
+  ppod 'SwiftSpinner'
 
 end

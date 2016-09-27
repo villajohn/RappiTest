@@ -22,6 +22,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var summaryText: UITextView!
     @IBOutlet weak var detailContainer: UIView!
 
+    @IBOutlet weak var topLandscapeContainer: UIView!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var sharBtn: UIButton!
     
@@ -58,6 +59,9 @@ class DetailViewController: UIViewController {
 
         closeBtn.setImage(UIImage(named: "close-button-pressed"), for: .highlighted)
         sharBtn.setImage(UIImage(named: "share-button-pressed"), for: .highlighted)
+        
+        topLandscapeContainer.layer.borderWidth = 1.0
+        topLandscapeContainer.layer.cornerRadius = 5.0
     }
 
     
