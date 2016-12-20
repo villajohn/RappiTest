@@ -26,12 +26,12 @@ class RootContainerViewController: UIViewController {
             return
         }
         
-        rootViewController?.willMove(toParentViewController: nil)
-        rootViewController?.removeFromParentViewController()
+        rootViewController?.willMove(toParentViewController: nil) //Agregaré el controlador a la vista
+        rootViewController?.removeFromParentViewController() //
         rootViewController?.view.removeFromSuperview()
         rootViewController?.didMove(toParentViewController: nil)
         
-        let splashViewController = SplashViewController(fileName: "bigote")
+        let splashViewController = SplashViewController(fileName: "bigote") //Hago la instancia del splash con las imagenes de bigote
         rootViewController = splashViewController
         splashViewController.puslsing = true
         

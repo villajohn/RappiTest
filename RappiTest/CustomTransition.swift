@@ -99,10 +99,12 @@ extension ApplicationsViewController: UIViewControllerTransitioningDelegate {
         }
     }
     
+    //Cuando sale la pantalla de detalle
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AnimationController(withDuration: 1.0, forTransitionType: .Dismissing, originFrame: CGRect(x: 400, y: 400, width: self.tableView.layer.frame.width, height: self.tableView.layer.frame.height))
     }
     
+    //Cuando entra la pantalla de detalle
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AnimationController(withDuration: 1.0, forTransitionType: .Presenting, originFrame: CGRect(x: -400, y: -400, width: self.tableView.layer.frame.width, height: self.tableView.layer.frame.height))
     }

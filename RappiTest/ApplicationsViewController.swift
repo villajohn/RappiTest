@@ -128,14 +128,14 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         /*
-        let detail = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailViewController
-        if filteredItems.count > 0 {
-            detail.appDetail = filteredItems[indexPath.row]
-        } else {
-            let tal = appList[indexPath.row]
-            detail.appDetail = tal
-        }
-        self.navigationController?.present(detail, animated: true)*/
+         let detail = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailViewController
+         if filteredItems.count > 0 {
+         detail.appDetail = filteredItems[indexPath.row]
+         } else {
+         let tal = appList[indexPath.row]
+         detail.appDetail = tal
+         }
+         self.navigationController?.present(detail, animated: true)*/
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

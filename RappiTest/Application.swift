@@ -102,7 +102,7 @@ class Application {
             sendDate = newDate
         }
         
-        //dateFormatter.dateStyle = .medium
+        dateFormatter.dateStyle = .medium
         let dateString = dateFormatter.string(from: sendDate!)
         return dateString
     }

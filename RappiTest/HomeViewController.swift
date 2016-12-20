@@ -93,7 +93,7 @@ class HomeViewController: UIViewController {
         contactButton.addTarget(self, action: #selector(self.mainButtonReleased(_:)), for: .touchUpInside)
         
         //labels for buttons
-        applicationLabel.text = NSLocalizedString("applications", comment: "")
+        applicationLabel.text = NSLocalizedString("applications", comment: "") 
         aboutLabel.text       = NSLocalizedString("about", comment: "")
         contactLabel.text     = NSLocalizedString("contact", comment: "")
     }
