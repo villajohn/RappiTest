@@ -18,26 +18,25 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var padDismissButton: UIButton!
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredItems = [Application]()
     
     var interactionController: UIPercentDrivenInteractiveTransition?
     
-    override func viewWillAppear(_ animated: Bool) {
-        loadTable()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         SwiftSpinner.show("")
+        loadTable()
         loadRefreshControl()
         setupView()
     }
     
     func setupView() {
-        tableView.backgroundColor = UIColor.rappidGrayColor()
-        self.view.backgroundColor = UIColor.rappidGrayColor()
+        tableView.backgroundColor = UIColor.rappiGreenColor()
+        self.view.backgroundColor = UIColor.rappiGreenColor()
         
         let backItem = UIBarButtonItem()
         backItem.title = ""
@@ -47,6 +46,7 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+        searchController.searchBar.barStyle = UIBarStyle.default
         tableView.tableHeaderView = searchController.searchBar
         
         //mostrar logo como título en el navigation controller
@@ -54,6 +54,14 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationItem.titleView = UIImageView(image: image)
         
         collectionView.backgroundColor = UIColor.rappidGrayColor()
+        
+        backButton.layer.cornerRadius = backButton.frame.size.width / 2
+        backButton.setTitleColor(UIColor.white, for: .normal)
+        backButton.setTitle("<", for: .normal)
+        backButton.backgroundColor = UIColor.pieOrangeColor()
+        
+        padDismissButton.layer.cornerRadius = padDismissButton.frame.size.width / 2
+        
     }
     
     
@@ -108,18 +116,27 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         cell.nameLabel.text = item.name
-        cell.developerLabel.text = item.owner?["label"] as! String?
-        cell.categorylabel.text  = item.category?["label"] as! String?
-        cell.releaseLabel.text   = item.realeaseDate
         
-        cell.priceLabel.text     = (Double(item.price?["amount"] as! String) == 0 ? "Free" : "\(item.price?["amount"]) \(item.price?["currency"])")
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            cell.developerLabel.isHidden = true
+            cell.categorylabel.isHidden = true
+            cell.releaseLabel.isHidden = true
+        } else {
+            cell.developerLabel.text = item.owner!
+            cell.categorylabel.text  = item.category!
+            cell.releaseLabel.text   = item.realeaseDate
+        }
         
-        let url = NSURL(string: item.icon?[2]["label"] as! String)
+        cell.priceLabel.text     = (Double(item.price!) == 0 ? "Free" : "\(item.price!) \(item.currency!)")
+        
+        let url = NSURL(string: item.icon!)
         let networkService = NetworkServices(url: url!)
         networkService.downloadImage { (imageData) in
             let image = UIImage(data: imageData as Data)
             DispatchQueue.main.async(execute: {
                 cell.pictureView?.image = image
+                cell.backgroundImage.image = image
+                cell.backgroundImage.contentMode = .scaleAspectFill
             })
         }
     
@@ -189,7 +206,7 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
         roundedPictureWithout(sender: cell.iconAppCollection, color: UIColor.white)
         
         cell.titleAppCollection.text = item.name
-        let url = NSURL(string: item.icon?[2]["label"] as! String)
+        let url = NSURL(string: item.icon!)
         let networkService = NetworkServices(url: url!)
         networkService.downloadImage { (imageData) in
             let image = UIImage(data: imageData as Data)
@@ -197,7 +214,6 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
                 cell.iconAppCollection.image = image
             })
         }
-        
         
         return cell
     }
@@ -211,9 +227,7 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
             (action) -> Void in
             
             DispatchQueue.main.async(execute: {
-                let backUpFile = try! keyChain.getData("secret") //keyChain[data: "backup"]
-                let dataFile = NSData(data: backUpFile!)
-                self.appList = Application.downloadApplications(isJsonFile: true, file: dataFile)
+                self.appList = getAppsStored()
                 self.refreshtable()
             })
         })
@@ -241,6 +255,19 @@ class ApplicationsViewController: UIViewController, UITableViewDelegate, UITable
             }
         })
     }
+    
+    @IBAction func backButtonAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func padBackAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension ApplicationsViewController: UISearchResultsUpdating {

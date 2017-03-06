@@ -14,20 +14,21 @@ var keyChain: Keychain = Keychain()
 let shared = Keychain(service: "com.jlvillalobos.RappiTest", accessGroup: "12ABCD3E4F.shared")
 
 class Application {
-    var id:          NSDictionary?
+    var id:          String?
     var name:        String?
     var title:       String?
-    var icon:        [NSDictionary]?
+    var icon:        String?
     var summary:     String?
-    var price:       NSDictionary?
-    var contentType: NSDictionary?
+    var price:       String?
+    var currency:    String?
+    var contentType: String?
     var rights:      String?
-    var link:        NSDictionary?
-    var owner:       NSDictionary?
-    var category:    NSDictionary?
+    var link:        String?
+    var owner:       String?
+    var category:    String?
     var realeaseDate: String?
     
-    init (id: NSDictionary, name: String, title: String, icon: [NSDictionary], summary: String, price: NSDictionary, contentType: NSDictionary, rights: String, link: NSDictionary, owner: NSDictionary, category: NSDictionary, releaseDate: String) {
+    init (id: String, name: String, title: String, icon: String, summary: String, price: String, contentType: String, rights: String, link: String, owner: String, category: String, releaseDate: String, currency: String) {
         
         self.id             = id
         self.name           = name
@@ -35,6 +36,7 @@ class Application {
         self.icon           = icon
         self.summary        = summary
         self.price          = price
+        self.currency       = currency
         self.contentType    = contentType
         self.rights         = rights
         self.link           = link
@@ -44,17 +46,25 @@ class Application {
     }
     
     init(appDictionary: [String: AnyObject]) {
-        self.id             = appDictionary["id"]?["attributes"] as? NSDictionary
+        let idatt = appDictionary["id"]?["attributes"] as? NSDictionary
+        self.id             = idatt?["im:id"] as? String
         self.name           = appDictionary["im:name"]?["label"] as? String
-        self.icon           = appDictionary["im:image"] as? [NSDictionary]
+        let iconAtt         = appDictionary["im:image"] as? [NSDictionary]
+        self.icon           = iconAtt?[2]["label"] as? String
         self.summary        = appDictionary["summary"]?["label"] as? String
-        self.price          = appDictionary["im:price"]?["attributes"] as? NSDictionary
-        self.contentType    = appDictionary["im:contentType"]?["attributes"] as? NSDictionary
+        let priceAtt        = appDictionary["im:price"]?["attributes"] as? NSDictionary
+        self.price          = priceAtt?["amount"] as? String
+        self.currency       = priceAtt?["currency"] as? String
+        let typeAtt         = appDictionary["im:contentType"]?["attributes"] as? NSDictionary
+        self.contentType    = typeAtt?["term"] as? String
         self.rights         = appDictionary["rights"]?["label"] as? String
         self.title          = appDictionary["title"]?["label"] as? String
-        self.link           = appDictionary["link"]?["attributes"] as? NSDictionary
-        self.owner          = appDictionary["im:artist"] as? NSDictionary
-        self.category       = appDictionary["category"]?["attributes"] as? NSDictionary
+        let linkAtt         = appDictionary["link"]?["attributes"] as? NSDictionary
+        self.link           = linkAtt?["href"] as? String
+        let ownerAtt        = appDictionary["im:artist"] as? NSDictionary
+        self.owner          = ownerAtt?["label"] as? String
+        let catAtt          = appDictionary["category"]?["attributes"] as? NSDictionary
+        self.category       = catAtt?["label"] as? String
         self.realeaseDate   = getDate(date: (appDictionary["im:releaseDate"]?["label"] as? String)!)
     }
     
@@ -68,7 +78,7 @@ class Application {
             keyChain[data: "secret"] = jsonData as Data
             
             do {
-                try jsonData = NSData(contentsOf: NSURL(string: "https://itunes.apple.com/us/rss/topfreeapplications/limit=20/json")! as URL)
+                try jsonData = NSData(contentsOf: NSURL(string: serverURL)! as URL)
                 
             } catch let error {
               print("\(error.localizedDescription)")
@@ -85,6 +95,8 @@ class Application {
                 apps.append(newApp)
             }
         }
+        deleteAppsStored()
+        saveModel(appdata: apps)
         return apps
     }
     

@@ -1,15 +1,18 @@
 PODS:
-  - KeychainAccess (3.0.0)
-  - SwiftSpinner (0.9.5)
+  - KeychainAccess (3.0.1)
+  - Locksmith (3.0.0)
+  - SwiftSpinner (1.1.0)
 
 DEPENDENCIES:
   - KeychainAccess
+  - Locksmith
   - SwiftSpinner
 
 SPEC CHECKSUMS:
-  KeychainAccess: 412bf2650d9aebfc8135a58103b90ec38caad7f8
-  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
+  Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
+  SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
 
-PODFILE CHECKSUM: 832ac026fda711d290d083730ff1ed2bb3b650fc
+PODFILE CHECKSUM: 32d3a06ee76469b0cea078f981947f4e01ff03af
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0.beta.3

@@ -17,6 +17,7 @@ class ApplicationsViewCell: UITableViewCell {
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var pictureView: UIImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +40,14 @@ class ApplicationsViewCell: UITableViewCell {
         pictureView?.layer.borderColor = UIColor.white.cgColor
         pictureView?.layer.cornerRadius = (pictureView.frame.height)/2
         pictureView?.clipsToBounds = true
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = backgroundImage.frame
+        backgroundImage.addSubview(blurView)
+        
+        nameLabel.textColor = UIColor.white
+        nameLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 15.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

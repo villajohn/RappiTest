@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Locksmith.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RappiTest.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5957E5AACEC99AD54ABCE1E07A7A4184</key>
+		<key>8905DB6521F8FDC34752B69DEE3FDEB7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>838A2C6DA366DE138E5FDF1AF19D94C0</key>
+		<key>C7F727D48928BF47D913AFC48BB6A978</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>89A7D215A1A98C66E17726C3F1723405</key>
+		<key>D75C656528ADFBEF5F322AE0CEBE9221</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F00A9299F0309B6B610EFD20E5929EE2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

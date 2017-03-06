@@ -12,6 +12,11 @@ import SystemConfiguration
 
 
 //*****************************************************************
+// MARK: - Global Constants
+//*****************************************************************
+let serverURL = "https://itunes.apple.com/us/rss/topfreeapplications/limit=20/json"
+
+//*****************************************************************
 // MARK: - Extensions
 //*****************************************************************
 
@@ -63,7 +68,7 @@ func roundedPictureWithout(sender: UIImageView, color: UIColor) {
     sender.layer.borderWidth   = 1
     sender.layer.masksToBounds = false
     sender.layer.borderColor   = color.cgColor
-    sender.layer.cornerRadius  = (sender.frame.height)/2
+    sender.layer.cornerRadius  = (sender.frame.size.height)/2
     sender.clipsToBounds       = true
 }
 

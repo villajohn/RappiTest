@@ -17,10 +17,14 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var instagramLabel: UILabel!
     @IBOutlet weak var linkedInLabel: UILabel!
     @IBOutlet weak var landscapePicture: UIImageView!
+    @IBOutlet weak var padButtonsContainer: UIView!
     
     @IBOutlet weak var sEmailLabel: UILabel!
     @IBOutlet weak var sInstagramLabel: UILabel!
     @IBOutlet weak var sLinkedInLabel: UILabel!
+    @IBOutlet weak var cloeButton: UIButton!
+    
+    var gradientLayer: CAGradientLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +91,11 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
         sLinkedInLabel.layer.borderColor = UIColor.rappidGrayColor().cgColor
         sLinkedInLabel.layer.borderWidth = 2.0
         sLinkedInLabel.layer.cornerRadius = 10.0
+        
+        createGradientLayer()
+        cloeButton.layer.cornerRadius = cloeButton.frame.size.width / 2
+        
+        padButtonsContainer.layer.cornerRadius = 5.0
     }
     
     func sendEmail() {
@@ -108,7 +117,7 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     func openLinkedIn() {
-        UIApplication.shared.openURL(NSURL(string: NSLocalizedString("instagramLabel", comment: ""))! as URL)
+        UIApplication.shared.openURL(NSURL(string: NSLocalizedString("linkedIn", comment: ""))! as URL)
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,5 +127,21 @@ class ContactViewController: UIViewController, MFMailComposeViewControllerDelega
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         dismiss(animated: true, completion: nil)
     }
+    
+    func createGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = self.view.bounds
+        
+        gradientLayer.colors = [UIColor.pieOrangeColor().cgColor, UIColor.yellow.cgColor]
+        
+        self.view.layer.addSublayer(gradientLayer)
+    }
+    
+    @IBAction func closeAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
 
 }

@@ -84,3 +84,6 @@ pullMessage = "Pull to refresh the table";
 /* Cargando */
 loading = "loading...";
 
+
+/* Common Titles */
+back = "back";

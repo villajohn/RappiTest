@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var applicationButton: UIButton!
@@ -16,10 +16,21 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var applicationLabel: UILabel!
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var contactLabel: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var navBarPad: UINavigationBar!
+    
+    @IBOutlet weak var padAppButton: UIButton!
+    @IBOutlet weak var padContactButton: UIButton!
+    @IBOutlet weak var padAboutButton: UIButton!
+    
 
     @IBOutlet weak var appLblBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var abtLblBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var cntLblBottomConstraint: NSLayoutConstraint!
+    
+    let transition = CircularTransition()
+    var dismissButton = UIButton()
+    var presentButton = UIButton()
     
     override func viewWillAppear(_ animated: Bool) {
         aboutButton.alpha       = 0.0
@@ -28,24 +39,43 @@ class HomeViewController: UIViewController {
         applicationLabel.alpha  = 0.0
         contactButton.alpha     = 0.0
         contactLabel.alpha      = 0.0
+        padAppButton.alpha      = 0.0
+        padContactButton.alpha  = 0.0
+        padAboutButton.alpha    = 0.0
     
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseOut, animations: {
-            self.applicationButton.alpha = 1.0
-            self.applicationLabel.alpha  = 1.0
-        })
         
-        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
-            self.aboutButton.alpha = 1.0
-            self.aboutLabel.alpha  = 1.0
-        })
-        
-        UIView.animate(withDuration: 0.5, delay: 0.8, options: .curveEaseOut, animations: {
-            self.contactButton.alpha = 1.0
-            self.contactLabel.alpha  = 1.0
-        })
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseOut, animations: {
+                self.applicationButton.alpha = 1.0
+                self.applicationLabel.alpha  = 1.0
+            })
+            
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
+                self.aboutButton.alpha = 1.0
+                self.aboutLabel.alpha  = 1.0
+            })
+            
+            UIView.animate(withDuration: 0.5, delay: 0.8, options: .curveEaseOut, animations: {
+                self.contactButton.alpha = 1.0
+                self.contactLabel.alpha  = 1.0
+            })
+        } else {
+            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseOut, animations: {
+                self.padAppButton.alpha = 1.0
+                self.padAppButton.alpha  = 1.0
+            })
+            
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
+                self.padAboutButton.alpha = 1.0
+            })
+            
+            UIView.animate(withDuration: 0.5, delay: 0.8, options: .curveEaseOut, animations: {
+                self.padContactButton.alpha = 1.0
+            })
+        }
     }
     
     override func viewDidLoad() {
@@ -56,14 +86,14 @@ class HomeViewController: UIViewController {
     
     func setupView() {
         
-        view.backgroundColor = UIColor.rappidGrayColor()
+        view.backgroundColor = UIColor.pieOrangeColor()
         
         /** Navigation bar **/
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.barTintColor = UIColor.pieOrangeColor()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+//        let backItem = UIBarButtonItem()
+//        backItem.title = ""
+//        navigationItem.backBarButtonItem = backItem
+//        self.navigationController?.navigationBar.barTintColor = UIColor.pieOrangeColor()
+//        self.navigationController?.navigationBar.tintColor = UIColor.white
        
         //icono superior izquierdo del navigation controller
         /*let menuButton = UIButton()
@@ -73,68 +103,34 @@ class HomeViewController: UIViewController {
         
         //mostrar logo como título en el navigation controller
         let image = UIImage(named: "logo1-small.png")
-        self.navigationItem.titleView = UIImageView(image: image)
+//        self.navigationItem.titleView = UIImageView(image: image)
         
-        /** Main buttons at the screen **/
-        //Image when a button is pressed
-        aboutButton.setImage(UIImage(named: "icon-about-pressed"), for: .highlighted)
-        applicationButton.setImage(UIImage(named: "icon-application-pressed"), for: .highlighted)
-        contactButton.setImage(UIImage(named: "icon-contact-pressed"), for: .highlighted)
-        
-        
-        //methods for each button
-        aboutButton.addTarget(self, action: #selector(self.mainButtonPressed(_:)), for: .touchDown)
-        aboutButton.addTarget(self, action: #selector(self.mainButtonReleased(_:)), for: .touchUpInside)
-        
-        applicationButton.addTarget(self, action: #selector(self.mainButtonPressed(_:)), for: .touchDown)
-        applicationButton.addTarget(self, action: #selector(self.mainButtonReleased(_:)), for: .touchUpInside)
-        
-        contactButton.addTarget(self, action: #selector(self.mainButtonPressed(_:)), for: .touchDown)
-        contactButton.addTarget(self, action: #selector(self.mainButtonReleased(_:)), for: .touchUpInside)
-        
-        //labels for buttons
-        applicationLabel.text = NSLocalizedString("applications", comment: "") 
-        aboutLabel.text       = NSLocalizedString("about", comment: "")
-        contactLabel.text     = NSLocalizedString("contact", comment: "")
-    }
-    
-    func mainButtonPressed(_ sender: UIButton) {
-        switch sender {
-        case applicationButton:
-            UIView.animate(withDuration: 0.1, animations: {
-                self.appLblBottomConstraint.constant = -36
-                self.applicationLabel.textColor = UIColor.rappidGrayColor()
-            })
+        if UIDevice.current.userInterfaceIdiom == .phone {
+        navigationBar.topItem?.titleView = UIImageView(image: image)
+        navigationBar.backgroundColor = UIColor.pieOrangeColor()
             
-        case aboutButton:
-            UIView.animate(withDuration: 0.1, animations: {
-                self.abtLblBottomConstraint.constant = -36
-                self.aboutLabel.textColor = UIColor.rappidGrayColor()
-            })
-        case contactButton:
-            UIView.animate(withDuration: 0.1, animations: {
-                self.cntLblBottomConstraint.constant = -36
-                self.contactLabel.textColor = UIColor.rappidGrayColor()
-            })
-        default:
-            return
+            /** Main buttons at the screen **/
+            applicationButton.layer.cornerRadius = 5.0
+            aboutButton.layer.cornerRadius       = 5.0
+            contactButton.layer.cornerRadius     = 5.0
+            applicationButton.setTitle(NSLocalizedString("applications", comment: "").uppercased(), for: .normal)
+            aboutButton.setTitle(NSLocalizedString("about", comment: "").uppercased(), for: .normal)
+            contactButton.setTitle(NSLocalizedString("contact", comment: "").uppercased(), for: .normal)
+            
+        } else {
+            navBarPad.topItem?.titleView = UIImageView(image: image)
+            navBarPad.backgroundColor = UIColor.pieOrangeColor()
+            
+            padAppButton.layer.cornerRadius = 5.0
+            padAboutButton.layer.cornerRadius       = 5.0
+            padContactButton.layer.cornerRadius     = 5.0
+            padAppButton.setTitle(NSLocalizedString("applications", comment: "").uppercased(), for: .normal)
+            padAboutButton.setTitle(NSLocalizedString("about", comment: "").uppercased(), for: .normal)
+            padContactButton.setTitle(NSLocalizedString("contact", comment: "").uppercased(), for: .normal)
         }
-    }
-    
-    func mainButtonReleased(_ sender: UIButton) {
-        switch sender {
-        case applicationButton:
-            self.appLblBottomConstraint.constant = self.appLblBottomConstraint.constant - 10
-            self.applicationLabel.textColor = UIColor.black
-        case aboutButton:
-            self.abtLblBottomConstraint.constant = self.abtLblBottomConstraint.constant - 10
-            self.aboutLabel.textColor = UIColor.black
-        case contactButton:
-            self.cntLblBottomConstraint.constant = self.cntLblBottomConstraint.constant - 10
-            self.contactLabel.textColor = UIColor.black
-        default:
-            return
-        }
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -145,10 +141,63 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "show_applications"?:
-            print()
+            
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                presentButton = applicationButton
+                dismissButton = applicationButton
+            } else {
+                presentButton = padAppButton
+                dismissButton = padAppButton
+            }
+            let appController = segue.destination as! ApplicationsViewController
+            appController.transitioningDelegate = self
+            appController.modalPresentationStyle = .custom
+            
+        case "show_about"?:
+            
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                presentButton = aboutButton
+                dismissButton = aboutButton
+            } else {
+                presentButton = padAboutButton
+                dismissButton = padAboutButton
+            }
+            
+            let appController = segue.destination as! AboutViewController
+            appController.transitioningDelegate = self
+            appController.modalPresentationStyle = .custom
+            
+        case "show_contact"?:
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                presentButton = contactButton
+                dismissButton = contactButton
+            } else {
+                presentButton = padContactButton
+                dismissButton = padContactButton
+            }
+            let appController = segue.destination as! ContactViewController
+            appController.transitioningDelegate = self
+            appController.modalPresentationStyle = .custom
         default:
             return
         }
     }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode   = .present
+        transition.startingPoint    = presentButton.center
+        transition.circleColor      = presentButton.backgroundColor!
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            transition.transitionMode   = .dismiss
+            transition.startingPoint    = dismissButton.center
+            transition.circleColor      = dismissButton.backgroundColor!
+            
+            return transition
+    }
+    
     
 }

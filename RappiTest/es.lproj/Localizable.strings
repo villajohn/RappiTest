@@ -79,3 +79,6 @@ pullMessage = "Desliza hacia abajo para actualizar";
 
 /* Cargando */
 loading = "cargando...";
+
+/* Common Titles */
+back = "regresar";

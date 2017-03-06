@@ -54,7 +54,8 @@ class RootContainerViewController: UIViewController {
     func showMenuNavigationViewController() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let nav = storyboard.instantiateViewController(withIdentifier: "MainNavigator") as! UINavigationController
+        //let nav = storyboard.instantiateViewController(withIdentifier: "MainNavigator") as! UINavigationController
+        let nav = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         nav.willMove(toParentViewController: self)
         addChildViewController(nav)
         

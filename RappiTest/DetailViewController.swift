@@ -39,6 +39,8 @@ class DetailViewController: UIViewController {
     
     var rootViewController: ApplicationsViewController!
     
+    var gradientLayer: CAGradientLayer!
+    
     override func viewWillAppear(_ animated: Bool) {
         appPrice.textColor = UIColor.white
         
@@ -54,7 +56,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
+        createGradientLayer()
     }
     
     func loadViewpad() {
@@ -98,7 +100,7 @@ class DetailViewController: UIViewController {
     }
 
     func loadDetailsPhone() {
-        let url = NSURL(string: appDetail.icon?[2]["label"] as! String)
+        let url = NSURL(string: appDetail.icon!)
         let networkService = NetworkServices(url: url!)
         networkService.downloadImage { (imageData) in
             let image = UIImage(data: imageData as Data)
@@ -108,16 +110,16 @@ class DetailViewController: UIViewController {
         }
         
         sAppName.text        = appDetail.name
-        sAppOwner.text       = appDetail.owner?["label"] as? String
-        sAppCategory.text    = appDetail.category?["label"] as? String
+        sAppOwner.text       = appDetail.owner!
+        sAppCategory.text    = appDetail.category!
         sAppRights.text      = appDetail.rights
         sAppRelease.text     = appDetail.realeaseDate
         sSummaryText.text    = appDetail.summary
-        sAppPrice.text       = (Double(appDetail.price?["amount"] as! String) == 0 ? "Free" : "\(appDetail.price?["amount"]) \(appDetail.price?["currency"])")
+        sAppPrice.text       = (Double(appDetail.price!) == 0 ? "Free" : "\(appDetail.price!) \(appDetail.currency!)")
     }
     
     func loadDetailsPad() {
-        let url = NSURL(string: appDetail.icon?[2]["label"] as! String)
+        let url = NSURL(string: appDetail.icon!)
         let networkService = NetworkServices(url: url!)
         networkService.downloadImage { (imageData) in
             let image = UIImage(data: imageData as Data)
@@ -127,12 +129,12 @@ class DetailViewController: UIViewController {
         }
         
         appName.text        = appDetail.name
-        appOwner.text       = appDetail.owner?["label"] as? String
-        appCategory.text    = appDetail.category?["label"] as? String
+        appOwner.text       = appDetail.owner!
+        appCategory.text    = appDetail.category!
         appRights.text      = appDetail.rights
         appReleaseDate.text = appDetail.realeaseDate
         summaryText.text    = appDetail.summary
-        appPrice.text       = (Double(appDetail.price?["amount"] as! String) == 0 ? "Free" : "\(appDetail.price?["amount"]) \(appDetail.price?["currency"])")
+        appPrice.text       = (Double(appDetail.price!) == 0 ? "Free" : "\(appDetail.price!) \(appDetail.currency!)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -167,9 +169,20 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func shareDetail(_ sender: AnyObject) {
-        let shareContent = String(format: NSLocalizedString("shareAppMessage", comment: ""), appName.text!, (appDetail.link?["href"] as? String)!)
-        let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString, appPicture.image! as UIImage], applicationActivities: nil)
+        let shareContent = String(format: NSLocalizedString("shareAppMessage", comment: ""), appName.text!, appDetail.link!)
+        let pictureApp : UIImage = (UIDevice.current.userInterfaceIdiom == .pad ? appPicture.image : sAppPicture.image)!
+        let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString, pictureApp], applicationActivities: nil)
         present(activityViewController, animated: true, completion: {})
+    }
+    
+    func createGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = self.view.bounds
+        
+        gradientLayer.colors = [UIColor.pieOrangeColor().cgColor, UIColor.yellow.cgColor]
+        
+        self.view.layer.addSublayer(gradientLayer)
     }
 
 }
